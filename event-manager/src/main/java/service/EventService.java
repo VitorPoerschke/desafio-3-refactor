@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import repository.EventRepository;
 
 import java.util.Optional;
-//fix: name
+
 @Service
 @RequiredArgsConstructor
 public class EventService {
@@ -22,7 +22,7 @@ public class EventService {
         event.setDateTime(dto.getDateTime());
         event.setCep(dto.getCep());
 
-        var cepDetails = viaCepClient.getCepDetails(dto.getCep());
+        var cepDetails = viaCepClient.getCepDetails(dto.getCep());//corrigir o feign
         event.setLogradouro(cepDetails.get("logradouro"));
         event.setBairro(cepDetails.get("bairro"));
         event.setCidade(cepDetails.get("localidade"));
