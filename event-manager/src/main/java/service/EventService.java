@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import repository.EventRepository;
 
 import java.util.Optional;
-
+//fix: name
 @Service
 @RequiredArgsConstructor
 public class EventService {
