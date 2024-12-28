@@ -1,6 +1,6 @@
 package controller;
 
-import dto.EventDTO;
+import dto.EventDTO;//just for commit
 import lombok.RequiredArgsConstructor;
 import model.Event;
 import org.springframework.http.ResponseEntity;
