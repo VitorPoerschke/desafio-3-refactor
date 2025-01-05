@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import service.EventService;
 
 @RestController
-@RequestMapping("/br/com/compass/eventmanagement/v1")
+@RequestMapping("/events/v1")
 @RequiredArgsConstructor
 public class EventController {
 

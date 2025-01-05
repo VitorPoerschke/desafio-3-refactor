@@ -16,4 +16,5 @@ public class Event {
     private String bairro;
     private String cidade;
     private String uf;
+
 }

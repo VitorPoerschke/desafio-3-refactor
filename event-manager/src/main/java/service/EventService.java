@@ -22,7 +22,7 @@ public class EventService {
         event.setDateTime(dto.getDateTime());
         event.setCep(dto.getCep());
 
-        var cepDetails = viaCepClient.getCepDetails(dto.getCep());//corrigir o feign
+        var cepDetails = viaCepClient.getCepDetails(dto.getCep());
         event.setLogradouro(cepDetails.get("logradouro"));
         event.setBairro(cepDetails.get("bairro"));
         event.setCidade(cepDetails.get("localidade"));
