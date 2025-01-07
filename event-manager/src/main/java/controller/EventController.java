@@ -1,6 +1,6 @@
 package controller;
 
-import dto.EventDTO;//just for commit
+import dto.EventDTO;
 import lombok.RequiredArgsConstructor;
 import model.Event;
 import org.springframework.http.ResponseEntity;
@@ -22,4 +22,7 @@ public class EventController {
         Event event = service.createEvent(dto);
         return ResponseEntity.ok(event);
     }
+
+
+
 }
