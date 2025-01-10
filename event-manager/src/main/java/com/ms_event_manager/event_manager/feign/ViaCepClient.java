@@ -1,4 +1,4 @@
-package feign;
+package com.ms_event_manager.event_manager.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

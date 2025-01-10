@@ -1,4 +1,4 @@
-package model;
+package com.ms_event_manager.event_manager.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

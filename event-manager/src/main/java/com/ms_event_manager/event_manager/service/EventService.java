@@ -1,12 +1,11 @@
-package service;
+package com.ms_event_manager.event_manager.service;
 
-import dto.EventDTO;
-import feign.ViaCepClient;
+import com.ms_event_manager.event_manager.dto.EventDTO;
+import com.ms_event_manager.event_manager.feign.ViaCepClient;
 import lombok.RequiredArgsConstructor;
-import model.Event;
+import com.ms_event_manager.event_manager.model.Event;
 import org.springframework.stereotype.Service;
-import repository.EventRepository;
-
+import com.ms_event_manager.event_manager.repository.EventRepository;
 import java.util.Optional;
 
 @Service
@@ -17,6 +16,7 @@ public class EventService {
     private final ViaCepClient viaCepClient;
 
     public Event createEvent(EventDTO dto) {
+
         Event event = new Event();
         event.setEventName(dto.getEventName());
         event.setDateTime(dto.getDateTime());
@@ -27,7 +27,6 @@ public class EventService {
         event.setBairro(cepDetails.get("bairro"));
         event.setCidade(cepDetails.get("localidade"));
         event.setUf(cepDetails.get("uf"));
-
         return repository.save(event);
     }
 

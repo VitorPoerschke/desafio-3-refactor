@@ -1,23 +1,31 @@
-package controller;
+package com.ms_event_manager.event_manager.controller;
 
-import dto.EventDTO;
+import com.ms_event_manager.event_manager.dto.EventDTO;
 import lombok.RequiredArgsConstructor;
-import model.Event;
+import com.ms_event_manager.event_manager.model.Event;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.EventService;
+import com.ms_event_manager.event_manager.service.EventService;
 
 @RestController
-@RequestMapping("/events")
+@RequestMapping("/events/v1")
 @RequiredArgsConstructor
 public class EventController {
 
     private final EventService service;
 
-    @PostMapping("/create")
+    @GetMapping("/test")
+    public String test() {
+        return "Servidor está funcionando, azul caneta!!!!, que não vai dar BIRRL";
+    }
+
+    @PostMapping("/create_event")
     public ResponseEntity<Event> createEvent(@RequestBody EventDTO dto) {
         Event event = service.createEvent(dto);
         return new ResponseEntity<>(event, HttpStatus.CREATED);
     }
+
+
+
 }

@@ -1,4 +1,4 @@
-package dto;
+package com.ms_event_manager.event_manager.dto;
 
 import lombok.Data;
 
