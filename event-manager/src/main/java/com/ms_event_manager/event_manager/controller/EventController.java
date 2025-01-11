@@ -17,7 +17,14 @@ public class EventController {
 
     @GetMapping("/test")
     public String test() {
-        return "Servidor está funcionando, azul caneta!!!!, que não vai dar BIRRL";
+        return """
+                ┌───────────────┐
+                │ Servidor      │
+                │ está          │
+                │ funcionando!  │
+                └───────────────┘
+                   ( ͡° ͜ʖ ͡°)
+                """;
     }
 
     @PostMapping("/create_event")
