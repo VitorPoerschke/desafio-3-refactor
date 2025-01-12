@@ -19,6 +19,13 @@ public class EventService {
 
     public Event createEvent(EventDTO dto) {
 
+        if (dto.getEventName() == null || dto.getEventName().isBlank()) {
+            throw new IllegalArgumentException("O nome do evento não pode ser vazio ou nulo!");
+        }
+        if (dto.getCep() == null || dto.getCep().isBlank()) {
+            throw new IllegalArgumentException("O CEP é obrigatório!");
+        }
+
         Event event = new Event();
         event.setEventName(dto.getEventName());
         event.setDateTime(dto.getDateTime());
@@ -29,6 +36,7 @@ public class EventService {
         event.setBairro(cepDetails.get("bairro"));
         event.setCidade(cepDetails.get("localidade"));
         event.setUf(cepDetails.get("uf"));
+
         return repository.save(event);
     }
 
