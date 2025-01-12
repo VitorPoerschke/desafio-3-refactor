@@ -27,7 +27,7 @@ public class EventController {
         return service.getEventById(id)
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new IllegalArgumentException("Evento com ID " + id + " não encontrado."));
-    }//atualizei bora testar <-
+    }//ok 1<-
 
     @GetMapping("/get-all-events")
     public ResponseEntity<List<Event>> getAllEvents() {
@@ -43,8 +43,8 @@ public class EventController {
     public ResponseEntity<Event> updateEvent(@PathVariable String id, @RequestBody Event event) {
         return service.updateEvent(id, event)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }
+                .orElseThrow(() -> new IllegalArgumentException("Evento com ID " + id + " não encontrado para atualizar."));
+    }//ok 2<-
 
     @GetMapping("/test")
     public String test() {
