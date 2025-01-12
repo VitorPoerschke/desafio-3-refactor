@@ -24,10 +24,10 @@ public class EventController {
 
     @GetMapping("/get-event/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable String id) {
-        return  service.getEventById(id)
+        return service.getEventById(id)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }
+                .orElseThrow(() -> new IllegalArgumentException("Evento com ID " + id + " não encontrado."));
+    }//atualizei bora testar <-
 
     @GetMapping("/get-all-events")
     public ResponseEntity<List<Event>> getAllEvents() {
