@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import com.ms_event_manager.event_manager.model.Event;
 import org.springframework.stereotype.Service;
 import com.ms_event_manager.event_manager.repository.EventRepository;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,7 +36,7 @@ public class EventService {
         return repository.findById(id);
     }
 
-    public Iterable<Event> getAllEvents() {
+    public List<Event> getAllEvents() {
         return repository.findAll();
     }
 

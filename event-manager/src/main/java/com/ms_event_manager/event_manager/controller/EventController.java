@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.ms_event_manager.event_manager.service.EventService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/events/v1")
 @RequiredArgsConstructor
@@ -28,7 +30,11 @@ public class EventController {
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    
+    @GetMapping("/get-all-events")
+    public ResponseEntity<List<Event>> getAllEvents() {
+        return ResponseEntity.ok(service.getAllEvents());
+    }
+
     @GetMapping("/test")
     public String test() {
         return """
