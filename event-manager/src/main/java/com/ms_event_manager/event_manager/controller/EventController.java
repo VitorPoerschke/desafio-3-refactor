@@ -15,6 +15,20 @@ public class EventController {
 
     private final EventService service;
 
+    @PostMapping("/create-event")
+    public ResponseEntity<Event> createEvent(@RequestBody EventDTO dto) {
+        Event event = service.createEvent(dto);
+        return new ResponseEntity<>(event, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/get-event/{id}")
+    public ResponseEntity<Event> getEventById(@PathVariable String id) {
+        return  service.getEventById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+    
     @GetMapping("/test")
     public String test() {
         return """
@@ -26,13 +40,4 @@ public class EventController {
                    ( ͡° ͜ʖ ͡°)
                 """;
     }
-
-    @PostMapping("/create_event")
-    public ResponseEntity<Event> createEvent(@RequestBody EventDTO dto) {
-        Event event = service.createEvent(dto);
-        return new ResponseEntity<>(event, HttpStatus.CREATED);
-    }
-
-
-
 }
