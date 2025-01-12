@@ -39,6 +39,13 @@ public class EventController {
         return ResponseEntity.ok(service.getAllEventsSorted());
     }
 
+    @PutMapping("/update-event/{id}")
+    public ResponseEntity<Event> updateEvent(@PathVariable String id, @RequestBody Event event) {
+        return service.updateEvent(id, event)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
     @GetMapping("/test")
     public String test() {
         return """

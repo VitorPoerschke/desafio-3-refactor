@@ -45,6 +45,23 @@ public class EventService {
         return repository.findAll(Sort.by(Sort.Direction.ASC, "eventName"));
     }
 
+    public Optional<Event> updateEvent(String id, Event dto) {
+
+        return repository.findById(id).map(existingEvent -> {
+            existingEvent.setEventName(dto.getEventName());
+            existingEvent.setDateTime(dto.getDateTime());
+            existingEvent.setCep(dto.getCep());
+
+            var cepDetails = viaCepClient.getCepDetails(dto.getCep());
+            existingEvent.setLogradouro(cepDetails.get("logradouro"));
+            existingEvent.setBairro(cepDetails.get("bairro"));
+            existingEvent.setCidade(cepDetails.get("localidade"));
+            existingEvent.setUf(cepDetails.get("uf"));
+
+            return repository.save(existingEvent);
+        });
+    }
+
     public void deleteEvent(String id) {
         repository.deleteById(id);
     }
