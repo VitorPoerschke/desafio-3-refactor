@@ -1,15 +1,14 @@
 package com.ms_event_manager.event_manager.service;
 
-import com.ms_event_manager.event_manager.dto.EventDTO;
+import com.ms_event_manager.event_manager.repository.EventRepository;
 import com.ms_event_manager.event_manager.feign.ViaCepClient;
-import lombok.RequiredArgsConstructor;
+import com.ms_event_manager.event_manager.dto.EventDTO;
 import com.ms_event_manager.event_manager.model.Event;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import com.ms_event_manager.event_manager.repository.EventRepository;
-
-import java.util.List;
 import java.util.Optional;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
