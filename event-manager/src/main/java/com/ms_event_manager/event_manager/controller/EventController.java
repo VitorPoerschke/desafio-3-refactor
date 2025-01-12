@@ -1,14 +1,13 @@
 package com.ms_event_manager.event_manager.controller;
 
-import com.ms_event_manager.event_manager.dto.EventDTO;
-import lombok.RequiredArgsConstructor;
-import com.ms_event_manager.event_manager.model.Event;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.ms_event_manager.event_manager.dto.EventDTO;
+import com.ms_event_manager.event_manager.model.Event;
 import com.ms_event_manager.event_manager.service.EventService;
-
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/events/v1")
@@ -33,6 +32,11 @@ public class EventController {
     @GetMapping("/get-all-events")
     public ResponseEntity<List<Event>> getAllEvents() {
         return ResponseEntity.ok(service.getAllEvents());
+    }
+
+    @GetMapping("/get-all-events/sorted")
+    public ResponseEntity<List<Event>> getAllEventsSorted() {
+        return ResponseEntity.ok(service.getAllEventsSorted());
     }
 
     @GetMapping("/test")

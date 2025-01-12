@@ -4,6 +4,7 @@ import com.ms_event_manager.event_manager.dto.EventDTO;
 import com.ms_event_manager.event_manager.feign.ViaCepClient;
 import lombok.RequiredArgsConstructor;
 import com.ms_event_manager.event_manager.model.Event;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.ms_event_manager.event_manager.repository.EventRepository;
 
@@ -40,7 +41,12 @@ public class EventService {
         return repository.findAll();
     }
 
+    public List<Event> getAllEventsSorted() {
+        return repository.findAll(Sort.by(Sort.Direction.ASC, "eventName"));
+    }
+
     public void deleteEvent(String id) {
         repository.deleteById(id);
     }
+
 }
