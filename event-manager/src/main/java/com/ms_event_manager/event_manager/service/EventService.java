@@ -54,7 +54,16 @@ public class EventService {
 
     public Optional<Event> updateEvent(String id, Event dto) {
 
+        if (dto.getEventName() == null || dto.getEventName().isBlank()) {
+            throw new IllegalArgumentException("O nome do evento não pode ser vazio ou  nulo!");
+        }
+
+        if (dto.getCep() == null || dto.getCep().isBlank()) {
+            throw new IllegalArgumentException("O CEP é atualizado não pode ser vazio ou nulo!");
+        }
+
         return repository.findById(id).map(existingEvent -> {
+
             existingEvent.setEventName(dto.getEventName());
             existingEvent.setDateTime(dto.getDateTime());
             existingEvent.setCep(dto.getCep());
@@ -68,6 +77,7 @@ public class EventService {
             return repository.save(existingEvent);
         });
     }
+
 
     public void deleteEvent(String id) {
         repository.deleteById(id);
