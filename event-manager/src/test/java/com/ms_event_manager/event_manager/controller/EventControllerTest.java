@@ -125,5 +125,31 @@ public class EventControllerTest {
         assertEquals("Evento com ID 1 não encontrado.", exception.getMessage());
     }
 
+    @Test
+    void testGetAllEvents_Success() {
+        Event event1 = new Event();
+        event1.setId("1");
+        event1.setEventName("Evento 1");
+        event1.setDateTime("2025-01-12T15:00:00");
+        event1.setCep("12345678");
+        event1.setLogradouro("Rua A");
+        event1.setBairro("Bairro A");
+        event1.setCidade("Cidade A");
+        event1.setUf("UF");
+        Event event2 = new Event();
+        event2.setId("2");
+        event2.setEventName("Evento 2");
+        event2.setDateTime("2025-01-13T15:00:00");
+        event2.setCep("87654321");
+        event2.setLogradouro("Rua B");
+        event2.setBairro("Bairro B");
+        event2.setCidade("Cidade B");
+        event2.setUf("UF");
+        List<Event> events = Arrays.asList(event1, event2);
+        when(service.getAllEvents()).thenReturn(events);
+        ResponseEntity<List<Event>> response = controller.getAllEvents();
+        assertEquals(events, response.getBody());
+        assertEquals(200, response.getStatusCodeValue());
+    }
 
 }
