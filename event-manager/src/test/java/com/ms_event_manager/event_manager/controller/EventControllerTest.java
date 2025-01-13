@@ -60,5 +60,20 @@ public class EventControllerTest {
         assertEquals("CEP inválido", exception.getMessage());
     }
 
+    @Test
+    void testCreateEvent_MissingData() {
+        EventDTO dto = new EventDTO();
+        dto.setEventName("");
+        dto.setDateTime("2025-01-12T15:00:00");
+        dto.setCep("12345678");
+        Mockito.when(service.createEvent(dto))
+                .thenThrow(new IllegalArgumentException("Nome do evento não pode ser vazio"));
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.createEvent(dto);
+        });
+        assertEquals("Nome do evento não pode ser vazio", exception.getMessage());
+    }
+
+
 
 }
