@@ -188,5 +188,13 @@ public class EventControllerTest {
         assertEquals(200, response.getStatusCodeValue());
     }
 
+    @Test
+    void testGetAllEventsSorted_EmptyList() {
+        when(service.getAllEventsSorted()).thenReturn(Collections.emptyList());
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> {
+            controller.getAllEventsSorted();
+        });
+        assertEquals("Nenhum evento encontrado para ordenação.", exception.getMessage());
+    }
 
 }
