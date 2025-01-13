@@ -215,6 +215,24 @@ public class EventControllerTest {
         assertEquals(200, response.getStatusCodeValue());
     }
 
+    @Test
+    void testUpdateEvent_NotFound() {
+        String id = "1";
+        Event event = new Event();
+        event.setId("1");
+        event.setEventName("Evento Teste");
+        event.setDateTime("2025-01-12T15:00:00");
+        event.setCep("12345678");
+        event.setLogradouro("Rua X");
+        event.setBairro("Bairro X");
+        event.setCidade("Cidade X");
+        event.setUf("UF");
+        when(service.updateEvent(eq(id), any(Event.class))).thenReturn(Optional.empty());
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.updateEvent(id, event);
+        });
+        assertEquals("Evento com ID 1 não encontrado para atualizar.", exception.getMessage());
+    }
 
 
 }
