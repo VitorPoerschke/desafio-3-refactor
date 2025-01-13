@@ -161,5 +161,32 @@ public class EventControllerTest {
         assertEquals("Nenhum evento encontrado.", exception.getMessage());
     }
 
+    @Test
+    void testGetAllEventsSorted_Success() {
+        Event event1 = new Event();
+        event1.setId("1");
+        event1.setEventName("Evento A");
+        event1.setDateTime("2025-01-12T15:00:00");
+        event1.setCep("12345678");
+        event1.setLogradouro("Rua X");
+        event1.setBairro("Bairro X");
+        event1.setCidade("Cidade X");
+        event1.setUf("UF");
+        Event event2 = new Event();
+        event2.setId("2");
+        event2.setEventName("Evento B");
+        event2.setDateTime("2025-01-13T15:00:00");
+        event2.setCep("87654321");
+        event2.setLogradouro("Rua Y");
+        event2.setBairro("Bairro Y");
+        event2.setCidade("Cidade Y");
+        event2.setUf("UF");
+        List<Event> sortedEvents = Arrays.asList(event1, event2);
+        when(service.getAllEventsSorted()).thenReturn(sortedEvents);
+        ResponseEntity<List<Event>> response = controller.getAllEventsSorted();
+        assertEquals(sortedEvents, response.getBody());
+        assertEquals(200, response.getStatusCodeValue());
+    }
+
 
 }
