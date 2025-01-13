@@ -74,6 +74,20 @@ public class EventControllerTest {
         assertEquals("Nome do evento não pode ser vazio", exception.getMessage());
     }
 
+    @Test
+    void testCreateEvent_GenericException() {
+        EventDTO dto = new EventDTO();
+        dto.setEventName("Evento Teste");
+        dto.setDateTime("2025-01-12T15:00:00");
+        dto.setCep("82734561");
+        Mockito.when(service.createEvent(dto))
+                .thenThrow(new RuntimeException("Erro inesperado"));
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            controller.createEvent(dto);
+        });
+        assertEquals("Erro inesperado", exception.getMessage());
+    }
+
 
 
 }
