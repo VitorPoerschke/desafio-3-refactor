@@ -115,5 +115,15 @@ public class EventControllerTest {
         assertEquals(200, response.getStatusCodeValue());
     }
 
+    @Test
+    void testGetEventById_NotFound() {
+        String id = "1";
+        when(service.getEventById(id)).thenReturn(Optional.empty());
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.getEventById(id);
+        });
+        assertEquals("Evento com ID 1 não encontrado.", exception.getMessage());
+    }
+
 
 }
