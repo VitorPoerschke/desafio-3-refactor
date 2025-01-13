@@ -197,4 +197,24 @@ public class EventControllerTest {
         assertEquals("Nenhum evento encontrado para ordenação.", exception.getMessage());
     }
 
+    @Test
+    void testUpdateEvent_Success() {
+        String id = "1";
+        Event updatedEvent = new Event();
+        updatedEvent.setId("1");
+        updatedEvent.setEventName("Evento Atualizado");
+        updatedEvent.setDateTime("2025-01-12T15:00:00");
+        updatedEvent.setCep("12345678");
+        updatedEvent.setLogradouro("Rua Atualizada");
+        updatedEvent.setBairro("Bairro Atualizado");
+        updatedEvent.setCidade("Cidade Atualizada");
+        updatedEvent.setUf("UF");
+        when(service.updateEvent(eq(id), any(Event.class))).thenReturn(Optional.of(updatedEvent));
+        ResponseEntity<Event> response = controller.updateEvent(id, updatedEvent);
+        assertEquals(updatedEvent, response.getBody());
+        assertEquals(200, response.getStatusCodeValue());
+    }
+
+
+
 }
