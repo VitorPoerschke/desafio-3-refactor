@@ -1,6 +1,7 @@
 package com.ms_event_manager.event_manager.controller;
 
 import com.ms_event_manager.event_manager.dto.EventDTO;
+import com.ms_event_manager.event_manager.exceptions.NotFoundException;
 import com.ms_event_manager.event_manager.model.Event;
 import com.ms_event_manager.event_manager.service.EventService;
 import org.junit.jupiter.api.Test;
@@ -12,8 +13,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -88,6 +96,24 @@ public class EventControllerTest {
         assertEquals("Erro inesperado", exception.getMessage());
     }
 
+    //apartir daqui
+    @Test
+    void testGetEventById_Success() {
+        String id = "1";
+        Event event = new Event();
+        event.setId("1");
+        event.setEventName("Evento Teste");
+        event.setDateTime("2025-01-12T15:00:00");
+        event.setCep("12345678");
+        event.setLogradouro("Rua X");
+        event.setBairro("Centro");
+        event.setCidade("São Paulo");
+        event.setUf("SP");
+        when(service.getEventById(id)).thenReturn(Optional.of(event));
+        ResponseEntity<Event> response = controller.getEventById(id);
+        assertEquals(event, response.getBody());
+        assertEquals(200, response.getStatusCodeValue());
+    }
 
 
 }
