@@ -46,4 +46,19 @@ public class EventControllerTest {
         assertEquals(event, response.getBody());
     }
 
+    @Test
+    void testCreateEvent_InvalidCep() {
+        EventDTO dto = new EventDTO();
+        dto.setEventName("Evento Teste");
+        dto.setDateTime("2025-01-12T15:00:00");
+        dto.setCep("123");
+        Mockito.when(service.createEvent(dto))
+                .thenThrow(new IllegalArgumentException("CEP inválido"));
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.createEvent(dto);
+        });
+        assertEquals("CEP inválido", exception.getMessage());
+    }
+
+
 }
