@@ -1,22 +1,24 @@
 package com.ms_event_manager.event_manager.controller;
 
-import com.ms_event_manager.event_manager.dto.EventDTO;
 import com.ms_event_manager.event_manager.exceptions.NotFoundException;
-import com.ms_event_manager.event_manager.model.Event;
 import com.ms_event_manager.event_manager.service.EventService;
-import org.junit.jupiter.api.Test;
+import com.ms_event_manager.event_manager.dto.EventDTO;
+import com.ms_event_manager.event_manager.model.Event;
+
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
-import java.util.Arrays;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -233,6 +235,4 @@ public class EventControllerTest {
         });
         assertEquals("Evento com ID 1 não encontrado para atualizar.", exception.getMessage());
     }
-
-
 }
