@@ -68,6 +68,18 @@ public class EventServiceTest {
         assertEquals("O CEP é obrigatório!", exception.getMessage());
     }
 
+    @Test
+    void testGetEventById_Success() {
+        Event event = new Event();
+        event.setId("1");
+        event.setEventName("Evento Teste");
+        when(repository.findById("1")).thenReturn(Optional.of(event));
+        Optional<Event> result = service.getEventById("1");
+        assertTrue(result.isPresent());
+        assertEquals("Evento Teste", result.get().getEventName());
+    }
+
+
 
 
 }
