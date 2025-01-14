@@ -105,6 +105,14 @@ public class EventServiceTest {
         assertEquals(1, result.size());
     }
 
+    @Test
+    void testGetAllEvents_Empty() {
+        when(repository.findAll()).thenReturn(Collections.emptyList());
+        List<Event> result = service.getAllEvents();
+        assertTrue(result.isEmpty());
+    }
+
+
 
 
 
