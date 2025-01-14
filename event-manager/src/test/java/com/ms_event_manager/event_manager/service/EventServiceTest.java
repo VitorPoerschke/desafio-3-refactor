@@ -61,5 +61,13 @@ public class EventServiceTest {
         assertEquals("O nome do evento não pode ser vazio ou nulo!", exception.getMessage());
     }
 
+    @Test
+    void testCreateEvent_MissingCep() {
+        EventDTO dto = new EventDTO("Evento Teste", "2025-01-12T15:00:00", "");
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> service.createEvent(dto));
+        assertEquals("O CEP é obrigatório!", exception.getMessage());
+    }
+
+
 
 }
