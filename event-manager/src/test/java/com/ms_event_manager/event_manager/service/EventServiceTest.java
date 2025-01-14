@@ -86,6 +86,26 @@ public class EventServiceTest {
         assertFalse(result.isPresent());
     }
 
+    @Test
+    void testGetAllEvents_Success() {
+        Event event = new Event();
+        event.setId("1");
+        event.setEventName("Evento Teste");
+        event.setDateTime("2025-01-12T15:00:00");
+        event.setCep("12345678");
+        event.setLogradouro("Rua X");
+        event.setBairro("Centro");
+        event.setCidade("Cidade X");
+        event.setUf("XX");
+
+        List<Event> events = List.of(event);
+        when(repository.findAll()).thenReturn(events);
+        List<Event> result = service.getAllEvents();
+        assertNotNull(result);
+        assertEquals(1, result.size());
+    }
+
+
 
 
 }
