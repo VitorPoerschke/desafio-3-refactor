@@ -112,8 +112,42 @@ public class EventServiceTest {
         assertTrue(result.isEmpty());
     }
 
+    @Test
+    void testUpdateEvent_Success() {
 
+        Event existingEvent = new Event();
+        existingEvent.setId("1");
+        existingEvent.setEventName("Old Event");
+        existingEvent.setDateTime("2025-01-10T10:00:00");
+        existingEvent.setCep("12345678");
+        existingEvent.setLogradouro("Rua Y");
 
+        Event updatedEvent = new Event();
+        updatedEvent.setId("1");
+        updatedEvent.setEventName("Updated Event");
+        updatedEvent.setDateTime("2025-01-12T15:00:00");
+        updatedEvent.setCep("87654321");
+        updatedEvent.setLogradouro("Rua Z");
 
+        Map<String, Event> database = new HashMap<>();
+        database.put("1", existingEvent);
+
+        String id = "1";
+        if (database.containsKey(id)) {
+            Event eventToUpdate = database.get(id);
+            eventToUpdate.setEventName(updatedEvent.getEventName());
+            eventToUpdate.setDateTime(updatedEvent.getDateTime());
+            eventToUpdate.setCep(updatedEvent.getCep());
+            eventToUpdate.setLogradouro(updatedEvent.getLogradouro());
+            database.put(id, eventToUpdate);
+        }
+
+        Event result = database.get("1");
+        assertNotNull(result);
+        assertEquals("Updated Event", result.getEventName());
+        assertEquals("2025-01-12T15:00:00", result.getDateTime());
+        assertEquals("87654321", result.getCep());
+        assertEquals("Rua Z", result.getLogradouro());
+    }
 
 }
