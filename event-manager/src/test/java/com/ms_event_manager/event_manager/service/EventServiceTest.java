@@ -79,6 +79,12 @@ public class EventServiceTest {
         assertEquals("Evento Teste", result.get().getEventName());
     }
 
+    @Test
+    void testGetEventById_NotFound() {
+        when(repository.findById("1")).thenReturn(Optional.empty());
+        Optional<Event> result = service.getEventById("1");
+        assertFalse(result.isPresent());
+    }
 
 
 
