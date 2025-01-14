@@ -54,4 +54,12 @@ public class EventServiceTest {
         assertEquals(HttpStatus.CREATED.value(), HttpStatus.CREATED.value());
     }
 
+    @Test
+    void testCreateEvent_MissingName() {
+        EventDTO dto = new EventDTO(null, "2025-01-12T15:00:00", "12345678");
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> service.createEvent(dto));
+        assertEquals("O nome do evento não pode ser vazio ou nulo!", exception.getMessage());
+    }
+
+
 }
