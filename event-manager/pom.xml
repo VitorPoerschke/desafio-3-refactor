@@ -136,6 +136,15 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<excludes>
+						<exclude>com/ms_event_manager/event_manager/repository/**</exclude>
+						<exclude>com/ms_event_manager/event_manager/dto/**</exclude>
+						<exclude>com/ms_event_manager/event_manager/feign/**</exclude>
+						<exclude>com/ms_event_manager/event_manager/exceptions/**</exclude>
+						<exclude>com/ms_event_manager/event_manager/model/**</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

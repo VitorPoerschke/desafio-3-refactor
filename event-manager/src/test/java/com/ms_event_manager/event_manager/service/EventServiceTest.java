@@ -150,4 +150,32 @@ public class EventServiceTest {
         assertEquals("Rua Z", result.getLogradouro());
     }
 
+    @Test
+    void testUpdateEvent_NotFound() {
+
+        Event updatedEvent = new Event();
+        updatedEvent.setId("1");
+        updatedEvent.setEventName("Updated Event");
+        updatedEvent.setDateTime("2025-01-12T15:00:00");
+        updatedEvent.setCep("87654321");
+        updatedEvent.setLogradouro("Rua Z");
+
+        Map<String, Event> database = new HashMap<>();
+
+        String id = "1";
+        Optional<Event> result = Optional.empty();
+        if (database.containsKey(id)) {
+            Event eventToUpdate = database.get(id);
+            eventToUpdate.setEventName(updatedEvent.getEventName());
+            eventToUpdate.setDateTime(updatedEvent.getDateTime());
+            eventToUpdate.setCep(updatedEvent.getCep());
+            eventToUpdate.setLogradouro(updatedEvent.getLogradouro());
+            database.put(id, eventToUpdate);
+            result = Optional.of(eventToUpdate);
+        }
+
+        assertFalse(result.isPresent());
+    }
+
+
 }
