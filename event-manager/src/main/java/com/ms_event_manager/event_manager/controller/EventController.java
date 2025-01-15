@@ -32,14 +32,19 @@ public class EventController {
         Event event = service.createEvent(dto);
         return new ResponseEntity<>(event, HttpStatus.CREATED);
     }
-
+    //só para dar um espaço 1
+    @Operation(summary = "Buscar evento por ID", description = "Obtém os detalhes de um evento usando seu ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Evento encontrado", content = @Content(schema = @Schema(implementation = Event.class))),
+            @ApiResponse(responseCode = "400", description = "Evento não encontrado", content = @Content)
+    })
     @GetMapping("/get-event/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable String id) {
         return service.getEventById(id)
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new IllegalArgumentException("Evento com ID " + id + " não encontrado."));
     }
-
+    //só para dar um espaço 2
     @GetMapping("/get-all-events")
     public ResponseEntity<List<Event>> getAllEvents() {
         List<Event> events = service.getAllEvents();
