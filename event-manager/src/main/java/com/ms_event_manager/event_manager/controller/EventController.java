@@ -58,7 +58,12 @@ public class EventController {
         }
         return ResponseEntity.ok(events);
     }
-
+    //só para dar um espaço 3
+    @Operation(summary = "Listar eventos ordenados", description = "Retorna todos os eventos em ordem especificada.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Eventos retornados e ordenados com sucesso", content = @Content(schema = @Schema(implementation = Event.class))),
+            @ApiResponse(responseCode = "404", description = "Nenhum evento encontrado para ordenação", content = @Content)
+    })
     @GetMapping("/get-all-events/sorted")
     public ResponseEntity<List<Event>> getAllEventsSorted() {
         List<Event> sortedEvents = service.getAllEventsSorted();
