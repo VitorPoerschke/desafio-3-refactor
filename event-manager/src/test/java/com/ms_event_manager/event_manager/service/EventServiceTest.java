@@ -177,5 +177,4 @@ public class EventServiceTest {
         assertFalse(result.isPresent());
     }
 
-
 }
