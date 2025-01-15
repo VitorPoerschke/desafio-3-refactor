@@ -72,7 +72,12 @@ public class EventController {
         }
         return ResponseEntity.ok(sortedEvents);
     }
-
+    //só para dar um espaço 4
+    @Operation(summary = "Atualizar evento", description = "Atualiza os detalhes de um evento existente usando seu ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Evento atualizado com sucesso", content = @Content(schema = @Schema(implementation = Event.class))),
+            @ApiResponse(responseCode = "404", description = "Evento não encontrado", content = @Content)
+    })
     @PutMapping("/update-event/{id}")
     public ResponseEntity<Event> updateEvent(@PathVariable String id, @RequestBody Event event) {
         return service.updateEvent(id, event)
