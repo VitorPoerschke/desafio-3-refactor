@@ -1,5 +1,10 @@
 package com.ms_event_manager.event_manager.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +22,11 @@ public class EventController {
 
     private final EventService service;
 
+    @Operation(summary = "Criar evento", description = "Cria um novo evento com base nos dados fornecidos.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Evento criado com sucesso!", content = @Content(schema = @Schema(implementation = Event.class))),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida -_-¨!", content = @Content)
+    })
     @PostMapping("/create-event")
     public ResponseEntity<Event> createEvent(@RequestBody EventDTO dto) {
         Event event = service.createEvent(dto);
