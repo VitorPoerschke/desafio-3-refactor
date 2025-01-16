@@ -5,6 +5,8 @@ import com.ms_ticket_manager.ticket_manager.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class TicketService {
@@ -13,6 +15,10 @@ public class TicketService {
 
     public Ticket createTicket(Ticket ticket) {
         return repository.save(ticket);
+    }
+    
+    public Optional<Ticket> getTicketById(String id) {
+        return repository.findById(id)  ;
     }
 
 }
