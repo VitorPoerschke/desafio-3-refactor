@@ -21,9 +21,13 @@ public class TicketService {
     public Optional<Ticket> getTicketById(String id) {
         return repository.findById(id)  ;
     }
-    
+
     public List<Ticket> getAllTickets() {
         return repository.findAll();
     }
 
+    public void deleteTicket(String id) {
+        repository.deleteById(id);
+    }
+    
 }
