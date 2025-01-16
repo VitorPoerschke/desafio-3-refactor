@@ -34,4 +34,10 @@ public class TicketController {
         return ResponseEntity.ok(tickets);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTicket(@PathVariable String id) {
+        service.deleteTicket(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
