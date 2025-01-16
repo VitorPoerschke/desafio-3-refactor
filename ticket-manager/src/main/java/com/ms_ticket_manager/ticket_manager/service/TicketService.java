@@ -29,5 +29,5 @@ public class TicketService {
     public void deleteTicket(String id) {
         repository.deleteById(id);
     }
-    
+
 }
