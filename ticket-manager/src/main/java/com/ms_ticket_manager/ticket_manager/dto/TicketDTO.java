@@ -4,9 +4,8 @@ import lombok.Data;
 
 @Data
 public class TicketDTO {
-    private String title;
-    private String description;
-    private String status;
-    private String priority;
-    private String assignedTo;
+    private String customerName;
+    private String cpf;
+    private String customerMail;
+    private String eventId;
 }
