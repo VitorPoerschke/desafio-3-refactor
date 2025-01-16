@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/tickets")
 @RequiredArgsConstructor
@@ -24,6 +26,12 @@ public class TicketController {
         return service.getTicketById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Ticket>> getAllTickets() {
+        List<Ticket> tickets = service.getAllTickets();
+        return ResponseEntity.ok(tickets);
     }
 
 }
