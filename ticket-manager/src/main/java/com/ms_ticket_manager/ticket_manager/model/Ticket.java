@@ -8,12 +8,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "tickets")
 public class Ticket {
     @Id
-    private String id;
-    private String title;
-    private String description;
+    private String ticketId;
+    private String cpf;
+    private String customerName;
+    private String customerMail;
+    private Event event;
+    private String BRLtotalAmount;
+    private String USDtotalAmount;
     private String status;
-    private String priority;
-    private String assignedTo;
-    private String createdAt;
-    private String updatedAt;
 }

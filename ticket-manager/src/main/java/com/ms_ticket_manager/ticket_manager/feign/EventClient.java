@@ -1,6 +1,7 @@
 package com.ms_ticket_manager.ticket_manager.feign;
 
 
+import com.ms_ticket_manager.ticket_manager.model.Event;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
