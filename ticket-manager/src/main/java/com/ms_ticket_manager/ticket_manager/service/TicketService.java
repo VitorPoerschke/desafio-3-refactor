@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -43,6 +44,11 @@ public class TicketService {
     public Optional<Ticket> getTicketById(String id) {
         return repository.findById(id);
     }
+
+    public List<Ticket> getAllTickets() {
+        return repository.findAll();
+    }
+
 
 
 }
