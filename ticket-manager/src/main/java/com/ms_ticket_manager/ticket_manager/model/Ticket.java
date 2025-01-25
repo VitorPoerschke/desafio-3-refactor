@@ -12,8 +12,10 @@ public class Ticket {
     private String cpf;
     private String customerName;
     private String customerMail;
-    private Event event;
+    private String eventId;
     private String BRLtotalAmount;
     private String USDtotalAmount;
     private String status;
+
+    private Event event;
 }

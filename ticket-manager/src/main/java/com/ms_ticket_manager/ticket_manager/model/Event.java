@@ -8,11 +8,9 @@ import java.time.LocalDateTime;
 public class Event {
     private String eventId;
     private String eventName;
-    private LocalDateTime eventDateTime;
+    private String eventDateTime;
     private String logradouro;
     private String bairro;
     private String cidade;
     private String uf;
-
-
 }

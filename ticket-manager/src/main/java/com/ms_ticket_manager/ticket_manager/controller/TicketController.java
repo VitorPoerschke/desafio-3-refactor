@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/tickets")
+@RequestMapping("/v1/tickets")
 @RequiredArgsConstructor
 public class TicketController {
 
@@ -42,5 +42,17 @@ public class TicketController {
     //      service.deleteTicket(id);
     //     return ResponseEntity.noContent().build();
     //  }
+
+    @GetMapping("/test")
+    public String test() {
+        return """
+                ┌───────────────┐
+                │ Servidor      │
+                │ está ticket   │
+                │ funcionando!  │
+                └───────────────┘
+                   ( ͡* ͜ʖ ͡*)
+                """;
+    }
 
 }

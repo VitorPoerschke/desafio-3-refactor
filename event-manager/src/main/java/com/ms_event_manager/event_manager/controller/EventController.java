@@ -94,7 +94,7 @@ public class EventController {
         return """
                 ┌───────────────┐
                 │ Servidor      │
-                │ está          │
+                │ está evento   │
                 │ funcionando!  │
                 └───────────────┘
                    ( ͡* ͜ʖ ͡*)
