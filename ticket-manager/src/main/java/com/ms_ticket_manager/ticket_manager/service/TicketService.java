@@ -49,6 +49,10 @@ public class TicketService {
         return repository.findAll();
     }
 
-
-
+    public void deleteTicket(String id) {
+        if (!repository.existsById(id)) {
+            throw new IllegalArgumentException("Ticket com o ID fornecido não encontrado.");
+        }
+        repository.deleteById(id);
+    }
 }
