@@ -17,31 +17,30 @@ public class TicketController {
 
     private final TicketService service;
 
-
     @PostMapping("/create-ticket")
     public ResponseEntity<Ticket> createTicket(@RequestBody TicketDTO ticketDTO) {
         Ticket createdTicket = service.createTicket(ticketDTO);
         return new ResponseEntity<>(createdTicket, HttpStatus.CREATED);
     }
 
-   // @GetMapping("get/{id}")
-    // public ResponseEntity<Ticket> getTicketById(@PathVariable String id) {
-    //     return service.getTicketById(id)
-    //            .map(ResponseEntity::ok)
-     //             .orElse(ResponseEntity.notFound().build());
-    // }
+   @GetMapping("get/{id}")
+    public ResponseEntity<Ticket> getTicketById(@PathVariable String id) {
+        return service.getTicketById(id)
+               .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
-    //  @GetMapping("/get-all-tickets")
-    //  public ResponseEntity<List<Ticket>> getAllTickets() {
-    //    List<Ticket> tickets = service.getAllTickets();
-    //    return ResponseEntity.ok(tickets);
-    // }
+    @GetMapping("/get-all-tickets")
+      public ResponseEntity<List<Ticket>> getAllTickets() {
+        List<Ticket> tickets = service.getAllTickets();
+        return ResponseEntity.ok(tickets);
+     }
 
-    //  @DeleteMapping("delete/{id}")
-    //  public ResponseEntity<Void> deleteTicket(@PathVariable String id) {
-    //      service.deleteTicket(id);
-    //     return ResponseEntity.noContent().build();
-    //  }
+     @DeleteMapping("delete/{id}")
+      public ResponseEntity<Void> deleteTicket(@PathVariable String id) {
+          service.deleteTicket(id);
+         return ResponseEntity.noContent().build();
+    }
 
     @GetMapping("/test")
     public String test() {
