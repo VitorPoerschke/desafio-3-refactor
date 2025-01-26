@@ -3,6 +3,11 @@ package com.ms_ticket_manager.ticket_manager.controller;
 import com.ms_ticket_manager.ticket_manager.dto.TicketDTO;
 import com.ms_ticket_manager.ticket_manager.model.Ticket;
 import com.ms_ticket_manager.ticket_manager.service.TicketService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +22,13 @@ public class TicketController {
 
     private final TicketService service;
 
+    @Operation(summary = "Criar um novo ticket", description = "Cria um ticket com os detalhes fornecidos.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Ticket criado com sucesso",
+                    content = @Content(schema = @Schema(implementation = Ticket.class))),
+            @ApiResponse(responseCode = "400", description = "Entrada inválida",
+                    content = @Content)
+    })
     @PostMapping("/create-ticket")
     public ResponseEntity<Ticket> createTicket(@RequestBody TicketDTO ticketDTO) {
         Ticket createdTicket = service.createTicket(ticketDTO);
