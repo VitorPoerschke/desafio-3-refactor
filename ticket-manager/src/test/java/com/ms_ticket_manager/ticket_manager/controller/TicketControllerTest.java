@@ -136,5 +136,30 @@ class TicketControllerTest {
                 .andExpect(jsonPath("$.customerName").value("John Doe"));
     }
 
+    @Test
+    void updateTicket_shouldReturnNotFoundWhenNotUpdated() throws Exception {
+
+        Mockito.when(ticketService.updateTicket(eq("1"), any(Ticket.class))).thenReturn(Optional.empty());
+
+        mockMvc.perform(put("/v1/tickets/update-ticket/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(ticket)))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void testServer_shouldReturnMessage() throws Exception {
+
+        mockMvc.perform(get("/v1/tickets/test"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("""
+                        ┌───────────────┐
+                        │ Servidor      │
+                        │ está ticket   │
+                        │ funcionando!  │
+                        └───────────────┘
+                           ( ͡* ͜ʖ ͡*)
+                        """));
+    }
 
 }//!
