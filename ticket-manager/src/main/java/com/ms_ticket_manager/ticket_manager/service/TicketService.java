@@ -58,4 +58,32 @@ public class TicketService {
             return false;
         }
     }
+
+    public Optional<Ticket> updateTicket(String id, Ticket updatedTicket) {
+        return repository.findById(id).map(existingTicket -> {
+            if (updatedTicket.getCpf() != null) {
+                existingTicket.setCpf(updatedTicket.getCpf());
+            }
+            if (updatedTicket.getCustomerName() != null) {
+                existingTicket.setCustomerName(updatedTicket.getCustomerName());
+            }
+            if (updatedTicket.getCustomerMail() != null) {
+                existingTicket.setCustomerMail(updatedTicket.getCustomerMail());
+            }
+            if (updatedTicket.getEventId() != null) {
+                existingTicket.setEventId(updatedTicket.getEventId());
+            }
+            if (updatedTicket.getBRLtotalAmount() != null) {
+                existingTicket.setBRLtotalAmount(updatedTicket.getBRLtotalAmount());
+            }
+            if (updatedTicket.getUSDtotalAmount() != null) {
+                existingTicket.setUSDtotalAmount(updatedTicket.getUSDtotalAmount());
+            }
+            if (updatedTicket.getStatus() != null) {
+                existingTicket.setStatus(updatedTicket.getStatus());
+            }
+            return repository.save(existingTicket);
+        });
+    }
+
 }

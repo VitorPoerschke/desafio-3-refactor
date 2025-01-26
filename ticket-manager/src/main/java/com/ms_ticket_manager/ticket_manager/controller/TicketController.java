@@ -46,6 +46,16 @@ public class TicketController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/update-ticket/{id}")
+    public ResponseEntity<Ticket> updateTicket(
+            @PathVariable String id,
+            @RequestBody Ticket updatedTicket) {
+        return service.updateTicket(id, updatedTicket)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @GetMapping("/test")
     public String test() {
         return """
