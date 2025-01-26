@@ -90,4 +90,14 @@ public class TicketServiceTest {
         Mockito.verify(repository).deleteById("123");
     }
 
+    @Test
+    void testDeleteTicketNotFound() {
+        Mockito.when(repository.findById("123")).thenReturn(Optional.empty());
+
+        boolean wasDeleted = service.deleteTicket("123");
+
+        assertThat(wasDeleted).isFalse();
+        Mockito.verify(repository, Mockito.never()).deleteById(Mockito.anyString());
+    }
+
 }
