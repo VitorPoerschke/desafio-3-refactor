@@ -83,4 +83,27 @@ class TicketControllerTest {
                 .andExpect(jsonPath("$.customerName").value("John Doe"));
     }
 
+    @Test
+    void getTicketById_shouldReturnNotFoundWhenNotFound() throws Exception {
+
+        Mockito.when(ticketService.getTicketById(eq("1"))).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/v1/tickets/get/1")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void getAllTickets_shouldReturnListOfTickets() throws Exception {
+
+        Mockito.when(ticketService.getAllTickets()).thenReturn(Arrays.asList(ticket));
+
+        mockMvc.perform(get("/v1/tickets/get-all-tickets")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].ticketId").value("1"))
+                .andExpect(jsonPath("$[0].customerName").value("John Doe"));
+    }
+
+
 }//!
