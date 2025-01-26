@@ -12,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @ExtendWith(MockitoExtension.class)
@@ -52,5 +54,29 @@ public class TicketServiceTest {
         Mockito.verify(repository).save(Mockito.any(Ticket.class));
         Mockito.verify(eventClient).getEventById("12345");
     }
+
+    @Test
+    void testUpdateTicketSuccess() {
+
+        Ticket existingTicket = new Ticket();
+        existingTicket.setTicketId("123");
+        existingTicket.setCustomerName("João");
+
+        Ticket updatedTicket = new Ticket();
+        updatedTicket.setCustomerName("Maria");
+
+        Mockito.when(repository.findById("123")).thenReturn(Optional.of(existingTicket));
+        Mockito.when(repository.save(Mockito.any(Ticket.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
+
+        Optional<Ticket> result = service.updateTicket("123", updatedTicket);
+
+        assertThat(result).isPresent();
+        assertThat(result.get().getCustomerName()).isEqualTo("Maria");
+        Mockito.verify(repository).findById("123");
+        Mockito.verify(repository).save(Mockito.any(Ticket.class));
+    }
+
+
 
 }
