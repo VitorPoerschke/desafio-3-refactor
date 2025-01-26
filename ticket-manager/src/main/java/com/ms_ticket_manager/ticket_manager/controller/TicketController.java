@@ -35,6 +35,12 @@ public class TicketController {
         return new ResponseEntity<>(createdTicket, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Buscar um ticket pelo ID", description = "Busca um ticket pelo seu ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Ticket encontrado",
+                    content = @Content(schema = @Schema(implementation = Ticket.class))),
+            @ApiResponse(responseCode = "404", description = "Ticket não encontrado", content = @Content)
+    })
    @GetMapping("get/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable String id) {
         return service.getTicketById(id)
