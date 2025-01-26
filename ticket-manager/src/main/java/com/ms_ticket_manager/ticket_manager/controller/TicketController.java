@@ -47,7 +47,7 @@ public class TicketController {
                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-    
+
     @Operation(summary = "Obter todos os tickets", description = "Busca todos os tickets.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Lista de tickets retornada",
@@ -59,6 +59,11 @@ public class TicketController {
         return ResponseEntity.ok(tickets);
      }
 
+    @Operation(summary = "Excluir um ticket", description = "Exclui um ticket pelo seu ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Ticket excluído com sucesso", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Ticket não encontrado", content = @Content)
+    })
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> deleteTicket(@PathVariable String id) {
         boolean wasDeleted = service.deleteTicket(id);
