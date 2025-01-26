@@ -51,7 +51,6 @@ public class TicketService {
 
     public boolean deleteTicket(String id) {
         Optional<Ticket> ticket = repository.findById(id);
-
         if (ticket.isPresent()) {
             repository.deleteById(id);
             return true;
