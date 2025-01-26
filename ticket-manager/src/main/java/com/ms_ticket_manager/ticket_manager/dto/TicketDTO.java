@@ -56,4 +56,16 @@ public class TicketDTO {
     public void setUsdAmount(String usdAmount) {
         this.usdAmount = usdAmount;
     }
+
+    @Override
+    public String toString() {
+        return "TicketDTO{" +
+                "customerName='" + customerName + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", customerMail='" + customerMail + '\'' +
+                ", eventId='" + eventId + '\'' +
+                ", brlAmount='R$" + brlAmount + '\'' +
+                ", usdAmount='$" + usdAmount + '\'' +
+                '}';
+    }
 }
