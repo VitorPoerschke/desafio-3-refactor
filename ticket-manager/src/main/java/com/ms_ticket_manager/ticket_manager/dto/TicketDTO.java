@@ -1,6 +1,10 @@
 package com.ms_ticket_manager.ticket_manager.dto;
 
-public class TicketDTO {
+import java.io.Serializable;
+
+public class TicketDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String customerName;
     private String cpf;

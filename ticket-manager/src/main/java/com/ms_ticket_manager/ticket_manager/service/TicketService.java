@@ -25,8 +25,8 @@ public class TicketService {
         ticket.setCustomerName(ticketDTO.getCustomerName());
         ticket.setCpf(ticketDTO.getCpf());
         ticket.setCustomerMail(ticketDTO.getCustomerMail());
-        ticket.setBRLtotalAmount(ticketDTO.getBrlAmount());
-        ticket.setUSDtotalAmount(ticketDTO.getUsdAmount());
+        ticket.setBrlAmount(ticketDTO.getBrlAmount());
+        ticket.setUsdAmount(ticketDTO.getUsdAmount());
         ticket.setEventId(ticketDTO.getEventId());
 
         log.info("Buscando evento com ID: {}", ticketDTO.getEventId());
@@ -73,11 +73,11 @@ public class TicketService {
             if (updatedTicket.getEventId() != null) {
                 existingTicket.setEventId(updatedTicket.getEventId());
             }
-            if (updatedTicket.getBRLtotalAmount() != null) {
-                existingTicket.setBRLtotalAmount(updatedTicket.getBRLtotalAmount());
+            if (updatedTicket.getBrlAmount() != null) {
+                existingTicket.setBrlAmount(updatedTicket.getBrlAmount());
             }
-            if (updatedTicket.getUSDtotalAmount() != null) {
-                existingTicket.setUSDtotalAmount(updatedTicket.getUSDtotalAmount());
+            if (updatedTicket.getUsdAmount() != null) {
+                existingTicket.setUsdAmount(updatedTicket.getUsdAmount());
             }
             if (updatedTicket.getStatus() != null) {
                 existingTicket.setStatus(updatedTicket.getStatus());

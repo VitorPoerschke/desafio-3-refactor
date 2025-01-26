@@ -13,8 +13,8 @@ public class Ticket {
     private String customerName;
     private String customerMail;
     private String eventId;
-    private String BRLtotalAmount;
-    private String USDtotalAmount;
+    private String brlAmount;
+    private String usdAmount;
     private String status;
     private Event event;
 
@@ -58,20 +58,20 @@ public class Ticket {
         this.eventId = eventId;
     }
 
-    public String getBRLtotalAmount() {
-        return BRLtotalAmount;
+    public String getBrlAmount() {
+        return brlAmount;
     }
 
-    public void setBRLtotalAmount(String BRLtotalAmount) {
-        this.BRLtotalAmount = BRLtotalAmount;
+    public void setBrlAmount(String brlAmount) {
+        this.brlAmount = brlAmount;
     }
 
-    public String getUSDtotalAmount() {
-        return USDtotalAmount;
+    public String getUsdAmount() {
+        return usdAmount;
     }
 
-    public void setUSDtotalAmount(String USDtotalAmount) {
-        this.USDtotalAmount = USDtotalAmount;
+    public void setUsdAmount(String usdAmount) {
+        this.usdAmount = usdAmount;
     }
 
     public String getStatus() {
@@ -98,8 +98,8 @@ public class Ticket {
                 ", customerName='" + customerName + '\'' +
                 ", customerMail='" + customerMail + '\'' +
                 ", eventId='" + eventId + '\'' +
-                ", BRLtotalAmount='R$" + BRLtotalAmount + '\'' +
-                ", USDtotalAmount='$" + USDtotalAmount + '\'' +
+                ", BRLtotalAmount='R$" + brlAmount + '\'' +
+                ", USDtotalAmount='$" + usdAmount + '\'' +
                 ", status='" + status + '\'' +
                 ", event=" + event +
                 '}';
@@ -115,14 +115,15 @@ public class Ticket {
                 Objects.equals(customerName, ticket.customerName) &&
                 Objects.equals(customerMail, ticket.customerMail) &&
                 Objects.equals(eventId, ticket.eventId) &&
-                Objects.equals(BRLtotalAmount, ticket.BRLtotalAmount) &&
-                Objects.equals(USDtotalAmount, ticket.USDtotalAmount) &&
+                Objects.equals(brlAmount, ticket.brlAmount) &&
+                Objects.equals(usdAmount, ticket.usdAmount) &&
                 Objects.equals(status, ticket.status) &&
                 Objects.equals(event, ticket.event);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ticketId, cpf, customerName, customerMail, eventId, BRLtotalAmount, USDtotalAmount, status, event);
+        return Objects.hash(ticketId, cpf, customerName, customerMail, eventId, brlAmount, usdAmount, status, event);
     }
+
 }
