@@ -90,6 +90,10 @@ public class TicketController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Testar servidor", description = "Testa se o servidor está ativo")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Servidor funcionando", content = @Content)
+    })
     @GetMapping("/test")
     public String test() {
         return """
