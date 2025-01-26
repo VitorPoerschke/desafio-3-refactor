@@ -123,4 +123,18 @@ class TicketControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    void updateTicket_shouldReturnUpdatedTicket() throws Exception {
+
+        Mockito.when(ticketService.updateTicket(eq("1"), any(Ticket.class))).thenReturn(Optional.of(ticket));
+
+        mockMvc.perform(put("/v1/tickets/update-ticket/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(ticket)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.ticketId").value("1"))
+                .andExpect(jsonPath("$.customerName").value("John Doe"));
+    }
+
+
 }//!
