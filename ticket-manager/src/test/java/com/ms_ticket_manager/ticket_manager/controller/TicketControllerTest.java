@@ -114,5 +114,13 @@ class TicketControllerTest {
                 .andExpect(status().isNoContent());
     }
 
+    @Test
+    void deleteTicket_shouldReturnNotFoundWhenNotDeleted() throws Exception {
+
+        Mockito.when(ticketService.deleteTicket(eq("1"))).thenReturn(false);
+
+        mockMvc.perform(delete("/v1/tickets/delete/1"))
+                .andExpect(status().isNotFound());
+    }
 
 }//!
