@@ -105,5 +105,14 @@ class TicketControllerTest {
                 .andExpect(jsonPath("$[0].customerName").value("John Doe"));
     }
 
+    @Test
+    void deleteTicket_shouldReturnNoContentWhenDeleted() throws Exception {
+
+        Mockito.when(ticketService.deleteTicket(eq("1"))).thenReturn(true);
+
+        mockMvc.perform(delete("/v1/tickets/delete/1"))
+                .andExpect(status().isNoContent());
+    }
+
 
 }//!
