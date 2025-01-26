@@ -75,6 +75,12 @@ public class TicketController {
         }
     }
 
+    @Operation(summary = "Atualizar um ticket", description = "Atualiza os detalhes de um ticket.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Ticket atualizado com sucesso",
+                    content = @Content(schema = @Schema(implementation = Ticket.class))),
+            @ApiResponse(responseCode = "404", description = "Ticket não encontrado", content = @Content)
+    })
     @PutMapping("/update-ticket/{id}")
     public ResponseEntity<Ticket> updateTicket(
             @PathVariable String id,
