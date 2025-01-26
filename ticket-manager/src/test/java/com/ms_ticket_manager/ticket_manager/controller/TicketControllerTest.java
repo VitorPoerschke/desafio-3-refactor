@@ -71,4 +71,16 @@ class TicketControllerTest {
                 .andExpect(jsonPath("$.customerName").value("John Doe"));
     }
 
+    @Test
+    void getTicketById_shouldReturnTicketWhenFound() throws Exception {
+
+        Mockito.when(ticketService.getTicketById(eq("1"))).thenReturn(Optional.of(ticket));
+
+        mockMvc.perform(get("/v1/tickets/get/1")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.ticketId").value("1"))
+                .andExpect(jsonPath("$.customerName").value("John Doe"));
+    }
+
 }//!
