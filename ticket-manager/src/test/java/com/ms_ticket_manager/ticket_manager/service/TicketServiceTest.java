@@ -76,7 +76,18 @@ public class TicketServiceTest {
         Mockito.verify(repository).findById("123");
         Mockito.verify(repository).save(Mockito.any(Ticket.class));
     }
+    @Test
+    void testDeleteTicketSuccess() {
 
+        Ticket ticket = new Ticket();
+        ticket.setTicketId("123");
 
+        Mockito.when(repository.findById("123")).thenReturn(Optional.of(ticket));
+
+        boolean wasDeleted = service.deleteTicket("123");
+
+        assertThat(wasDeleted).isTrue();
+        Mockito.verify(repository).deleteById("123");
+    }
 
 }
