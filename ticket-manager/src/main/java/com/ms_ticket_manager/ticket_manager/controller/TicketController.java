@@ -47,7 +47,12 @@ public class TicketController {
                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
+    
+    @Operation(summary = "Obter todos os tickets", description = "Busca todos os tickets.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Lista de tickets retornada",
+                    content = @Content(schema = @Schema(implementation = Ticket.class)))
+    })
     @GetMapping("/get-all-tickets")
       public ResponseEntity<List<Ticket>> getAllTickets() {
         List<Ticket> tickets = service.getAllTickets();
