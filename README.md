@@ -61,7 +61,7 @@ Além disso, os microserviços utilizam integração com RabbitMQ para envio de 
    Substitua `seu_email` e `sua_senha_de_aplicativo` pelas credenciais do seu e-mail e senha do aplicativo gerada no Gmail.
 
 2. **MongoDB**:
-   - Certifique-se de que o MongoDB está configurado e em execução em sua máquina.
+   - Certifique-se de que o MongoDB está configurado e em execução em sua máquina e conectado no localhost:27017.
    - O banco de dados será gerado automaticamente com base nas entidades `Event` e `Ticket`.
 
 3. **RabbitMQ**:
