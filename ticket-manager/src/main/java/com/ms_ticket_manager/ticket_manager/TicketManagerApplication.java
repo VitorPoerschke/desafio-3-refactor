@@ -6,7 +6,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients
-public class TicketManagerApplication {
+public class
+TicketManagerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TicketManagerApplication.class, args);

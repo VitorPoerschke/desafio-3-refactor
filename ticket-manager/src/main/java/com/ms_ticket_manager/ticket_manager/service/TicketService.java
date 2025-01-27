@@ -55,17 +55,17 @@ public class TicketService {
                         "Você acaba de comprar um ingresso para o evento *%s*! 🎊\n" +
                         "Detalhes do evento:\n" +
                         "- Nome: %s\n" +
-                        "- Local: %s\n" +
-                        "- Data: %s\n\n" +
+                        "- Logradouro: %s\n" +
+                        "- Bairro: %s\n\n" +
                         "Valor total pago: R$ %s\n\n" +
                         "Muito obrigado por sua compra! Esperamos que você aproveite o evento ao máximo. 😄\n" +
                         "Caso tenha dúvidas, entre em contato conosco.\n\n" +
                         "Equipe do Evento Manager 💌",
                 ticket.getCustomerName(),
                 event.getEventName(),
-                event.getUf(),
+                event.getLogradouro(),
                 event.getCidade(),
-                event.getEventDateTime(),
+                event.getBairro(),
                 ticket.getBrlAmount()
         );
 
