@@ -117,5 +117,5 @@ Além disso, os microserviços utilizam integração com RabbitMQ para envio de 
 
 ## Autor
 
-- **Seu Nome** - [GitHub](https://github.com/VitorPoerschke)
+- **VitorPoerschke** 
 
