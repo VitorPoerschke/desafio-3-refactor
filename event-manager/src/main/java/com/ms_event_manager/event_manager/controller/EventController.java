@@ -32,7 +32,7 @@ public class EventController {
         Event event = service.createEvent(dto);
         return new ResponseEntity<>(event, HttpStatus.CREATED);
     }
-    //só para dar um espaço 1
+
     @Operation(summary = "Buscar evento por ID", description = "Obtém os detalhes de um evento usando seu ID.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Evento encontrado", content = @Content(schema = @Schema(implementation = Event.class))),
@@ -44,7 +44,7 @@ public class EventController {
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new IllegalArgumentException("Evento com ID " + id + " não encontrado."));
     }
-    //só para dar um espaço 2
+
     @Operation(summary = "Listar todos os eventos", description = "Retorna todos os eventos disponíveis.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Eventos retornados com sucesso", content = @Content(schema = @Schema(implementation = Event.class))),
@@ -58,7 +58,7 @@ public class EventController {
         }
         return ResponseEntity.ok(events);
     }
-    //só para dar um espaço 3
+
     @Operation(summary = "Listar eventos ordenados", description = "Retorna todos os eventos em ordem especificada.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Eventos retornados e ordenados com sucesso", content = @Content(schema = @Schema(implementation = Event.class))),
@@ -72,7 +72,7 @@ public class EventController {
         }
         return ResponseEntity.ok(sortedEvents);
     }
-    //só para dar um espaço 4
+
     @Operation(summary = "Atualizar evento", description = "Atualiza os detalhes de um evento existente usando seu ID.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Evento atualizado com sucesso", content = @Content(schema = @Schema(implementation = Event.class))),
@@ -84,7 +84,22 @@ public class EventController {
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new IllegalArgumentException("Evento com ID " + id + " não encontrado para atualizar."));
     }
-    //só para dar um espaço 5
+
+    @Operation(summary = "Excluir evento", description = "Exclui um evento com base no ID fornecido.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Evento excluído com sucesso!"),
+            @ApiResponse(responseCode = "404", description = "Evento não encontrado", content = @Content)
+    })
+    @DeleteMapping("/delete-event/{id}")
+    public ResponseEntity<Void> deleteEvent(@PathVariable String id) {
+        try {
+            service.deleteEvent(id);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
+            throw new NotFoundException("Evento com ID " + id + " não encontrado para exclusão.");
+        }
+    }
+
     @Operation(summary = "Testar servidor", description = "Testa se o servidor está ativo")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Servidor funcionando", content = @Content)
